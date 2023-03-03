@@ -96,25 +96,47 @@ const loadAiDetails = (id) => {
 };
 
 const showAiDetails = (data) => {
-    console.log(data);    
-    const {
-      description,
-      image_link,
-      integrations,
-      pricing,
-      input_output_examples,
-    } = data;
-    const modalContainer = document.getElementById('modal-container');
-    modalContainer.innerHTML = '';
-    const itemDiv = document.createElement('div');
-    itemDiv.classList.add('row', 'row-cols-1', 'row-cols-md-2', 'g-4');
-    itemDiv.innerHTML = `
+  console.log(data);
+  const {
+    description,
+    image_link,
+    integrations,
+    pricing,
+    input_output_examples,
+    accuracy,
+  } = data;
+  const modalContainer = document.getElementById("modal-container");
+  modalContainer.innerHTML = "";
+  const itemDiv = document.createElement("div");
+  itemDiv.classList.add("row", "row-cols-1", "row-cols-md-2", "g-4");
+  itemDiv.innerHTML = `
             <div class="col">
                     <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                                content. This content is a little bit longer.</p>
+                        <div class="card-body" style="background: rgba(235, 87, 87, 0.05);">
+                            <h4 class="card-title fw-bold mb-4">${description}</h4>
+                            <div class="pricing-container px-3 my-2">
+                                <div class="item">
+                                    <h5>
+                                        ${
+                                          pricing ? pricing[0].plan : "Basic"
+                                        } / ${pricing ? pricing[0].price : "Free of cost"}
+                                    </h5>
+                                </div>
+                                <div class="item">
+                                    <h5>
+                                        ${
+                                          pricing ? pricing[1].plan : "Pro"
+                                        } / ${pricing ? pricing[1].price : "Free of cost"}
+                                    </h5>
+                                </div>
+                                <div class="item">
+                                    <h5>
+                                        ${
+                                          pricing ? pricing[2].plan : "Enterprise"
+                                        } / ${pricing ? pricing[2].price : "Free of cost"}
+                                    </h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -126,17 +148,23 @@ const showAiDetails = (data) => {
                             }" alt="..." class="card-img-top rounded-3">
                        </div>
                         <div class="card-body text-center">
-                            <h4 class="card-title fw-bold">${input_output_examples ? input_output_examples[0].input : ""}</h4>
-                            <p class="card-text mb-3"></p>
+                            <h4 class="card-title fw-bold">${
+                              input_output_examples
+                                ? input_output_examples[0].input
+                                : "Not Yet Updated!!"
+                            }</h4>
+                            <p class="card-text mb-3">
+                                ${
+                                  input_output_examples
+                                    ? input_output_examples[0].output
+                                    : "No! Not Yet! Take a break!!!"
+                                }
+                            </p>
                         </div>
                     </div>
             </div>
     `;
-    modalContainer.appendChild(itemDiv);
-
+  modalContainer.appendChild(itemDiv);
 };
-
-
-
 
 fetchData();
