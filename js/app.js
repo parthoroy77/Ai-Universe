@@ -103,7 +103,8 @@ const showAiDetails = (data) => {
     integrations,
     pricing,
     input_output_examples,
-    accuracy,
+      accuracy,
+    features
   } = data;
   const modalContainer = document.getElementById("modal-container");
   modalContainer.innerHTML = "";
@@ -116,26 +117,48 @@ const showAiDetails = (data) => {
                             <h4 class="card-title fw-bold mb-4">${description}</h4>
                             <div class="pricing-container px-3 my-2">
                                 <div class="item">
-                                    <h5>
+                                    <h5 style="color: yellowgreen;">
                                         ${
-                                          pricing ? pricing[0].plan : "Basic"
-                                        } / ${pricing ? pricing[0].price : "Free of cost"}
+                                        pricing ? pricing[0].plan : "Basic"
+                                        } / ${
+                                            pricing ? pricing[0].price : "Free of cost"
+                                        }
                                     </h5>
                                 </div>
                                 <div class="item">
-                                    <h5>
+                                    <h5 style="color: orange;">
                                         ${
-                                          pricing ? pricing[1].plan : "Pro"
-                                        } / ${pricing ? pricing[1].price : "Free of cost"}
+                                        pricing ? pricing[1].plan : "Pro"
+                                        } / ${
+                                            pricing ? pricing[1].price : "Free of cost"
+                                        }
                                     </h5>
                                 </div>
                                 <div class="item">
-                                    <h5>
+                                    <h5 style="color: lightcoral;">
                                         ${
-                                          pricing ? pricing[2].plan : "Enterprise"
-                                        } / ${pricing ? pricing[2].price : "Free of cost"}
+                                        pricing
+                                            ? pricing[2].plan
+                                            : "Enterprise"
+                                        } / ${
+                                            pricing ? pricing[2].price : "Free of cost"
+                                        }
                                     </h5>
                                 </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mt-4">
+                                    <div>
+                                        <h5>Feature</h5>
+                                        <ul>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5>Integration</h5>
+                                        <ul>
+                                            ${modalIntegration(integrations)}
+                                        </ul>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -166,5 +189,19 @@ const showAiDetails = (data) => {
     `;
   modalContainer.appendChild(itemDiv);
 };
+
+const modalIntegration = (integrations) => {
+    if (integrations === null) {
+        return "No Data Found"
+    }
+    let integrationUl = ``;
+    for (const integration of integrations) {
+        integrationUl += `
+            <li>${integration}</li>
+        `
+    }
+    return integrationUl;
+}
+
 
 fetchData();
