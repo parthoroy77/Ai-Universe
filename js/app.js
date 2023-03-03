@@ -46,7 +46,9 @@ const showAiData = (data, showAll) => {
                                 </div>
                             </div>
                             <div>
-                                <button class="border-0 rounded-circle modal-btn"><img src="./images/arrow-right.png" style="width: 50px; height: 50px;" alt=""></button>
+                                <button class="border-0 rounded-circle modal-btn" data-bs-toggle="modal" data-bs-target="#aiDetailsModal">
+                                <img src="./images/arrow-right.png" style="width: 50px; height: 50px;" alt="">
+                                </button>
                             </div>
                         </div>
                     </div>
