@@ -1,7 +1,9 @@
 .modal-btn{
     background-color: #FEF7F7;;
 }
+
 .modal-dialog{
     max-width: none;
-    width: auto
+    width: 75%;
+    margin: 0 auto;
 }

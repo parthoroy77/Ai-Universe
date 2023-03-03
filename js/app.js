@@ -120,10 +120,14 @@ const showAiDetails = (data) => {
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                       <img src="${image_link[0]}" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a short card.</p>
+                       <div class="p-3">
+                            <img src="${
+                              image_link[0]
+                            }" alt="..." class="card-img-top rounded-3">
+                       </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title fw-bold">${input_output_examples ? input_output_examples[0].input : ""}</h4>
+                            <p class="card-text mb-3"></p>
                         </div>
                     </div>
             </div>
