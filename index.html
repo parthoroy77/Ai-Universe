@@ -15,12 +15,36 @@
 <body>
     <!-- Header section starts -->
     <header>
-
+        <div class="text-center py-5">
+            <div>
+                <h1 class="mb-4">AI Universe Hub</h1>
+                <button class="btn btn-danger py-2 px-4 rounded-4 fs-5 fw-bold">
+                    Sort By Date
+                </button>
+            </div>
+        </div>
     </header>
     <!-- Header section end -->
     <!-- main section starts -->
     <main>
-
+        <!-- AI container -->
+        <section class="container my-5">
+            <div id="ai-container" class="row row-cols-1 row-cols-md-3 g-4">
+                
+            </div>
+            <!-- see more button -->
+            <div class="my-5 text-center">
+                <button class="btn btn-danger py-2 px-4 rounded-4 fs-5 fw-bold d-none" id="see-more-btn">See More</button>
+            </div>
+        </section>
+        <!-- spinner body -->
+        <section id="spinner" class="d-none">
+            <div class="d-flex justify-content-center align-items-center" style="height: 500px;">
+                <div class="spinner-border text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </section>
     </main>
     <!-- main section ends -->
     <!-- Js files here -->
