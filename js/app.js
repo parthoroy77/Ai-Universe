@@ -146,11 +146,11 @@ const showAiDetails = (data) => {
                                     </h5>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between mt-4">
+                            <div class="d-flex align-items-center justify-content-between mt-4" style="text-align: left">
                                     <div>
                                         <h5>Feature</h5>
                                         <ul>
-                                            
+                                            ${modalFeature(features)}
                                         </ul>
                                     </div>
                                     <div>
@@ -189,6 +189,22 @@ const showAiDetails = (data) => {
     `;
   modalContainer.appendChild(itemDiv);
 };
+
+const modalFeature = (features) => {
+    if (features === null) {
+        return "No Data Found";
+    }
+    let featureUl = ``;
+    for (const feature in features) {
+        featureUl += `
+            <li>${features[feature].feature_name}</li>
+        `;
+    }
+    return featureUl
+}
+
+
+
 
 const modalIntegration = (integrations) => {
     if (integrations === null) {
