@@ -3,11 +3,19 @@ const fetchData = async (showAll) => {
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   const res = await fetch(url);
   const data = await res.json();
-  showAiData(data.data.tools, showAll);
+    {
+        publishedDate = data.data.tools;
+        showAiData(data.data.tools, showAll)
+    };
 };
+
+let publishedDate = [];
+
+
 
 const showAiData = (data, showAll) => {
   // console.log(data);
+    
   const aiContainer = document.getElementById("ai-container");
   aiContainer.innerHTML = ``;
   const showMoreBtn = document.getElementById("see-more-btn");
@@ -21,6 +29,7 @@ const showAiData = (data, showAll) => {
     // console.log(singleData);
     const { id, name, features, image, published_in } = singleData;
     // console.log(features);
+      
     const aiDiv = document.createElement("div");
     aiDiv.classList.add("col");
     aiDiv.innerHTML = `
@@ -95,6 +104,7 @@ const loadAiDetails = (id) => {
     .then((data) => showAiDetails(data.data));
 };
 
+
 const showAiDetails = (data) => {
   console.log(data);
   const {
@@ -105,7 +115,7 @@ const showAiDetails = (data) => {
     input_output_examples,
       accuracy,
     features
-  } = data;
+    } = data;
   const modalContainer = document.getElementById("modal-container");
   modalContainer.innerHTML = "";
   const itemDiv = document.createElement("div");
@@ -115,7 +125,7 @@ const showAiDetails = (data) => {
                     <div class="card h-100">
                         <div class="card-body" style="background: rgba(235, 87, 87, 0.05);">
                             <h4 class="card-title fw-bold mb-4">${description}</h4>
-                            <div class="pricing-container px-3 my-2">
+                            <div class="row row-cols-1 row-cols-md-3 gap-3 px-3 my-2">
                                 <div class="item">
                                     <h5 style="color: yellowgreen;">
                                         ${
@@ -146,7 +156,7 @@ const showAiDetails = (data) => {
                                     </h5>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between mt-4" style="text-align: left">
+                            <div class="row row-cols-1 row-cols-md-2 mt-4" style="text-align: left">
                                     <div>
                                         <h5>Feature</h5>
                                         <ul>
@@ -165,10 +175,15 @@ const showAiDetails = (data) => {
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                       <div class="p-3">
+                       <div class="p-3 position-relative">
                             <img src="${
                               image_link[0]
                             }" alt="..." class="card-img-top rounded-3">
+                            <div class="position-absolute top-0 end-0">
+                                <button class="btn btn-danger ${accuracy.score ? 'd-block' : 'd-none'}">
+                                    ${Math.floor(accuracy.score * 100)}% accuracy
+                                </button>
+                            </div>
                        </div>
                         <div class="card-body text-center">
                             <h4 class="card-title fw-bold">${
@@ -205,7 +220,6 @@ const modalFeature = (features) => {
 
 
 
-
 const modalIntegration = (integrations) => {
     if (integrations === null) {
         return "No Data Found"
@@ -218,6 +232,13 @@ const modalIntegration = (integrations) => {
     }
     return integrationUl;
 }
+
+const sortByDate = () => {
+    const sorted = publishedDate.sort(function (a, b) {
+      return new Date(a.published_in) - new Date(b.published_in);
+    });
+    console.log(sorted);
+};
 
 
 fetchData();
