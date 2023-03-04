@@ -14,8 +14,6 @@ let publishedDate = [];
 
 
 const showAiData = (data, showAll) => {
-  // console.log(data);
-    
   const aiContainer = document.getElementById("ai-container");
   aiContainer.innerHTML = ``;
   const showMoreBtn = document.getElementById("see-more-btn");
@@ -237,7 +235,7 @@ const sortByDate = () => {
     const sorted = publishedDate.sort(function (a, b) {
       return new Date(a.published_in) - new Date(b.published_in);
     });
-    console.log(sorted);
+    showAiData(sorted, 'show-all');
 };
 
 
