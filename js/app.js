@@ -17,17 +17,14 @@ const showAiData = (data, showAll) => {
   const aiContainer = document.getElementById("ai-container");
   aiContainer.innerHTML = ``;
   const showMoreBtn = document.getElementById("see-more-btn");
-  if (data.length > 6 && showAll !== "show-all") {
+  if (data.length >= 6 && showAll !== "show-all") {
     data = data.slice(0, 6);
     showMoreBtn.classList.remove("d-none");
   } else {
     showMoreBtn.classList.add("d-none");
   }
   data.forEach((singleData) => {
-    // console.log(singleData);
     const { id, name, features, image, published_in } = singleData;
-    // console.log(features);
-      
     const aiDiv = document.createElement("div");
     aiDiv.classList.add("col");
     aiDiv.innerHTML = `
@@ -79,13 +76,13 @@ const spinnerFunction = (isLoading) => {
 // See more btn click handler
 document.getElementById("see-more-btn").addEventListener("click", function () {
   spinnerFunction(true);
-  fetchData("show-all");
+    fetchData("show-all");
 });
+
 
 // Feature function
 const addFeature = (features) => {
   let olHtml = ``;
-  // console.log(features);
   for (let i = 0; i < features.length; i++) {
     olHtml += `
             <li>${features[i]}</li>
@@ -232,10 +229,11 @@ const modalIntegration = (integrations) => {
 }
 
 const sortByDate = () => {
-    const sorted = publishedDate.sort(function (a, b) {
+    const sort = publishedDate.slice(0, 6);
+    const sorted = sort.sort(function (a, b) {
       return new Date(a.published_in) - new Date(b.published_in);
     });
-    showAiData(sorted, 'show-all');
+    showAiData(sorted);
 };
 
 
